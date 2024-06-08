@@ -3,20 +3,19 @@ import { Button, Flex, FlexProps, Text } from '@chakra-ui/react';
 
 import { onTabAction } from '../../../../utils/tab-action';
 import { prepareTextTemplate } from '../../../../tab-envirentment/utils/prepare-text-template.ts';
-import { ETemplateTypes } from '../../../../enums/ETemplateTypes.ts';
 
 const templateMessages = [
   {
     value: 'First reach out',
-    type: ETemplateTypes.REACH_OUT_FIRSTLY,
+    type: 'reach_out_firstly',
   },
   {
     value: 'Short follow up',
-    type: ETemplateTypes.SHORT_FOLLOW_UP,
+    type: 'short_follow_up',
   },
   {
     value: 'Any update',
-    type: ETemplateTypes.ANY_UPDATE,
+    type: 'any_update',
   },
 ];
 
@@ -28,11 +27,13 @@ export const TemplateMessages = (props: FlexProps) => {
       <Text textStyle="h3" mb="1rem">
         Templates
       </Text>
-      <Flex>
+      <Flex flexWrap="wrap">
         {templateMessages.map(({ value, type }) => (
           <Button
             key={type}
-            mr="1rem"
+            mb='0.5rem'
+            mr='1rem'
+            minWidth="50px"
             size="xs"
             colorScheme="blue"
             onClick={() => onTabAction<[string]>?.({ func: prepareTextTemplate, args: [type] })}

@@ -1,10 +1,5 @@
-import { ETemplateTypes } from '../../enums/ETemplateTypes.ts';
-
 export function prepareTextTemplate<T extends any[]>(...args: T) {
   console.log(`[customMessageOne] start`);
-  console.log(args);
-
-  console.log(ETemplateTypes.REACH_OUT_FIRSTLY);
 
   const {
     customLinkedInExtension: {
@@ -13,12 +8,12 @@ export function prepareTextTemplate<T extends any[]>(...args: T) {
     },
   } = window;
 
-  console.log(ETemplateTypes.ANY_UPDATE);
-
   const userName = document.querySelector(USER_NAME_ID)?.textContent?.trim() || '';
 
+  let text = '';
 
-  const text = `
+  if (args[0] === 'reach_out_firstly') {
+    text = `
       <p>Hey ${transformToWeight({ text: userName })},</p>
       <p><br></p>
       <p>
@@ -29,6 +24,31 @@ export function prepareTextTemplate<T extends any[]>(...args: T) {
       <p><br></p>
       <p>We could set up a meeting and discuss the open role, what do you think?</p>
     `;
+  }
+
+  if (args[0] === 'short_follow_up') {
+    text = `
+      <p>Hey ${transformToWeight({ text: userName })},</p>
+      <p><br></p>
+      <p>
+      Just in case if you missed my previous message.
+      </p>
+    `;
+  }
+
+  if (args[0] === 'any_update') {
+    text = `
+      <p>Hey ${transformToWeight({ text: userName })},</p>
+      <p><br></p>
+      <p>
+      I hope you are doing well.
+      <p><br></p>
+      <p>I’m writing to express my continued interest in the role and to ask if there are any updates on the hiring process.</p>
+      <p><br></p>
+      <p>Please let me know if there are any updates or further steps I should take.
+</p>
+    `;
+  }
 
   sendLinkedinMessage({ text });
 
