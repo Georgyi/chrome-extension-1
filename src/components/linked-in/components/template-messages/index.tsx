@@ -20,8 +20,6 @@ const templateMessages = [
 ];
 
 export const TemplateMessages = (props: FlexProps) => {
-  console.log(templateMessages);
-
   return (
     <Flex flexDir="column" {...props}>
       <Text textStyle="h3" mb="1rem">
@@ -31,8 +29,8 @@ export const TemplateMessages = (props: FlexProps) => {
         {templateMessages.map(({ value, type }) => (
           <Button
             key={type}
-            mb='0.5rem'
-            mr='1rem'
+            mb="0.5rem"
+            mr="1rem"
             minWidth="50px"
             size="xs"
             colorScheme="blue"

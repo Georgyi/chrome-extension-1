@@ -1,7 +1,7 @@
 interface Window {
   customLinkedInExtension: {
     actions: {
-      sendLinkedinMessage: ({ isNew = true, text }: { isNew?: boolean, text: string }) => void;
+      sendLinkedinMessage: ({ isNew = true, text }: { isNew?: boolean; text: string }) => void;
       transformToWeight: ({ text }: { text: string }) => string;
     };
     constants: {

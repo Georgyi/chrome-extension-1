@@ -12,18 +12,14 @@ export function prepareTextTemplate<T extends any[]>(...args: T) {
 
   let text = '';
 
+
   if (args[0] === 'reach_out_firstly') {
-    text = `
-      <p>Hey ${transformToWeight({ text: userName })},</p>
-      <p><br></p>
-      <p>
-      I see you're hiring. I’m frontend developer with ${transformToWeight({
-        text: '5 years of commercial experience',
-      })} in custom development.
-      I've already applied for the opening position and decided to reach out here.</p>
-      <p><br></p>
-      <p>We could set up a meeting and discuss the open role, what do you think?</p>
-    `;
+    // В поле коннекта необходимо оставить форматирование текста как сейчас
+    text = `Hey ${transformToWeight({ text: userName })}
+I see you're hiring. I’m frontend developer with ${transformToWeight({ text: '5 years of commercial experience' })} in custom development.
+I've already applied for the opening position and decided to reach out here.
+
+We could set up a meeting and discuss the open role, what do you think?`;
   }
 
   if (args[0] === 'short_follow_up') {

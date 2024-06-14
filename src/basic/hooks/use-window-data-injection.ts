@@ -83,12 +83,38 @@ export const useWindowDataInjection = () => {
           const PLACEHOLDER_CHAT_CLASS = '.msg-form__placeholder';
           const SUBMIT_CHAT_BUTTON_CLASS = '.msg-form__send-button';
           const USER_NAME_ID = '#thread-detail-jump-target';
-          const MY_NAME = 'Georgii';
-          const MY_EMAIL = 'Ooshkap@gmail.com';
-          const MY_PHONE = '+1 (916) 907-42-66';
+          const MY_NAME = 'Fedor';
+          const MY_EMAIL = 'kotosuetolog@gmail.com';
+          const MY_PHONE = '+1 (347) 475-85-36';
+          const CONNECT_TEXTAREA_ID = 'custom-message';
 
-          const sendLinkedinMessage = ({ isNew = true, text }: { isNew?: boolean; text: string }) => {
+          const sendLinkedinMessage = async ({ isNew = true, text }: { isNew?: boolean; text: string }) => {
             console.log(`[sendLinkedinMessage] start`);
+
+            const connectMessageInput: HTMLElement | null = document.getElementById(CONNECT_TEXTAREA_ID);
+            const button = document.querySelector('[aria-label="Send invitation"]');
+
+            if (connectMessageInput && connectMessageInput instanceof HTMLTextAreaElement && button) {
+              try {
+                connectMessageInput.value = text;
+                connectMessageInput.dispatchEvent(
+                  new Event('input', {
+                    bubbles: true,
+                    cancelable: true,
+                  }),
+                );
+              } catch (e) {
+                console.error(e);
+              } finally {
+                button?.dispatchEvent(
+                  new Event('click', {
+                    bubbles: true,
+                    cancelable: true,
+                  }),
+                );
+              }
+              return;
+            }
 
             const messageInput = document.querySelector(CHAT_CLASS);
 
