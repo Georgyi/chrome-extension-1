@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { createEvent } from '../../utils/createEvent.ts';
 
 export const useWindowDataInjection = () => {
   // Добавляем в WINDOW вкладки методы и данные, для доступа к ним в методах
@@ -97,22 +98,14 @@ export const useWindowDataInjection = () => {
             if (connectMessageInput && connectMessageInput instanceof HTMLTextAreaElement && button) {
               try {
                 connectMessageInput.value = text;
-                connectMessageInput.dispatchEvent(
-                  new Event('input', {
-                    bubbles: true,
-                    cancelable: true,
-                  }),
-                );
+                connectMessageInput.dispatchEvent(createEvent('input'));
               } catch (e) {
                 console.error(e);
               } finally {
-                button?.dispatchEvent(
-                  new Event('click', {
-                    bubbles: true,
-                    cancelable: true,
-                  }),
-                );
+                button.dispatchEvent(createEvent('click'));
               }
+
+              console.log(`[sendLinkedinMessage] end`);
               return;
             }
 
